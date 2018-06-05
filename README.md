@@ -5,6 +5,7 @@
 4. Do /getchatid in this chat to get the chat ID of the chat you want to schedule the posts to send to. (You must also be an admin!)
 5. Enter this chat ID (including the negative symbol) into the 'ChatId' const
 6. Run the bot. If you are an admin in the specified chat ID, the following commands will work (In private message ONLY!)
+# Groestlcoin Telegram Police Bot
 
 - preview - Preview a normal message in PM
 - previewhtml - Preview a HTML message in PM
@@ -21,4 +22,3 @@
 - setinterval - Set the interval of an existing scheduled message. Use listschedules to find schedule id [ScheduleId] [Interval]
 - setmsgtext - Set the text of an existing scheduled message. Use listschedules to find schedule id [ScheduleId] [Message]
 - deleteschedule - Delete specified schedule [ScheduleId]
-
