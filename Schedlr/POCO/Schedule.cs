@@ -50,12 +50,13 @@ namespace Schedlr.POCO {
             }
         }
 
-        public static void GetMessage(int ScheduleId, out string message) {
+        public static void GetMessage(int ScheduleId, out string message, out ParseMode parsemode) {
             using (var db = new LiteDatabase(DatabaseName)) {
                 var scheduleCollection = db.GetCollection<Schedule>("schedules");
                 var schedule = scheduleCollection.Find(d => d.Id == ScheduleId).FirstOrDefault();
 
-                message = schedule != null ? schedule.Message : $"No schedule found with ID of {ScheduleId}";
+                message = schedule?.Message ?? $"No schedule found with ID of {ScheduleId}";
+                parsemode = schedule?.ParseMode ?? ParseMode.Default;
             }
         }
 
