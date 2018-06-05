@@ -87,8 +87,7 @@ namespace Schedlr {
                 var isAdmin = adminUsers.Select(d => d.User).Contains(message.Message.From);
 
                 string returnMessage = string.Empty;
-                string messageText;
-
+                ParseMode mode = ParseMode.Default;
 
                 foreach (var entity in message.Message.Entities) {
                     if (entity.Type == MessageEntityType.BotCommand) {
@@ -117,7 +116,7 @@ namespace Schedlr {
                                         await BotClient.SendTextMessageAsync(message.Message.Chat.Id, "Invalid Schedule ID", ParseMode.Default, true, false);
                                         return;
                                     }
-                                    var text = messageText = string.Join(" ", message.Message.Text.Split(' ').Skip(2));
+                                    var text = string.Join(" ", message.Message.Text.Split(' ').Skip(2));
                                     Schedule.SetText(scheduleId, text, out returnMessage);
                                     break;
                                 case BotCommands.showscheduletext:
@@ -125,7 +124,7 @@ namespace Schedlr {
                                         await BotClient.SendTextMessageAsync(message.Message.Chat.Id, "Invalid Schedule ID", ParseMode.Default, true, false);
                                         return;
                                     }
-                                    Schedule.GetMessage(scheduleId, out returnMessage);
+                                    Schedule.GetMessage(scheduleId, out returnMessage, out mode);
                                     break;
                                 case BotCommands.preview:
                                     if (!isAdmin) return;
@@ -195,7 +194,7 @@ namespace Schedlr {
                     }
                 }
                 if (!string.IsNullOrEmpty(returnMessage)) {
-                    await BotClient.SendTextMessageAsync(message.Message.Chat.Id, returnMessage, ParseMode.Default, true, false);
+                    await BotClient.SendTextMessageAsync(message.Message.Chat.Id, returnMessage, mode, true, false);
                 }
             }
             catch (Exception e) {
