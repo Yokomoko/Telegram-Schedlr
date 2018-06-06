@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LiteDB;
 using Telegram.Bot.Types.Enums;
 
-namespace Schedlr.POCO {
+namespace Schedlr_BL.POCO {
     public class Schedule {
         public static string DatabaseName => Properties.Settings.Default.DatabaseName;
 
